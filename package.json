@@ -1,0 +1,9 @@
+{
+  "name": "wrike-client",
+  "version": "0.1.0",
+  "description": "A client to fetch data from Wrike",
+  "main": "dist/index.js",
+  "repository": "https://github.com/hendrikniemann/wrike-client",
+  "author": "hendrikniemann",
+  "license": "MIT"
+}
