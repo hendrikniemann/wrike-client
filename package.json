@@ -32,5 +32,8 @@
       ],
       "flow"
     ]
+  },
+  "dependencies": {
+    "axios": "^0.16.2"
   }
 }
