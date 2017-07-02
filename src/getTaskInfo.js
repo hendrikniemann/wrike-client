@@ -27,11 +27,7 @@ export type Task = {
   followerIds?: string[],
 };
 
-export function getTaskInfo(instance: Axios, id: string): Promise<Task> {
-  return instance.get('tasks/' + id).then(response => response.data.data[0]);
-}
-
-export function getTasksInfo(instance: Axios, ids: string[]): Promise<Array<?Task>> {
+export default function getTasksInfo(instance: Axios, ids: string[]): Promise<Array<?Task>> {
   if (ids.length === 0) {
     return Promise.resolve([]);
   }

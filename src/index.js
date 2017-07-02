@@ -1,6 +1,6 @@
 /* @flow */
 import axios, { type Axios } from 'axios';
-import { type Task, getTasksInfo, getTaskInfo } from './getTaskInfo';
+import getTasksInfo, { type Task } from './getTaskInfo';
 import getUserInfo from './getUserInfo';
 import transformOldIds from './transformOldIds';
 
@@ -15,7 +15,7 @@ export default class WrikeAPI {
   }
 
   getTaskInfo(id: string): Promise<Task> {
-    return getTaskInfo(this.instance, id);
+    return getTasksInfo(this.instance, [id]).then(res => res[0]);
   }
 
   getTasksInfo(ids: string[]): Promise<Array<?Task>> {
