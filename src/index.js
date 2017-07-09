@@ -3,6 +3,7 @@ import axios, { type Axios } from 'axios';
 import getTasksInfo, { type Task } from './getTaskInfo';
 import getUserInfo, { type User } from './getUserInfo';
 import transformOldIds from './transformOldIds';
+import getCommentsFromTask, { type Comment } from './getCommentsFromTask';
 
 export default class WrikeAPI {
   instance: Axios;
@@ -20,6 +21,13 @@ export default class WrikeAPI {
 
   getTasksInfo(ids: string[]): Promise<Array<?Task>> {
     return getTasksInfo(this.instance, ids);
+  }
+
+  getCommentsFromTask(task: string | Task): Promise<Array<Comment>> {
+    if (typeof task === 'string') {
+      return getCommentsFromTask(this.instance, task);
+    }
+    return getCommentsFromTask(this.instance, task.id);
   }
 
   getUserInfo(id: string): Promise<?User> {
