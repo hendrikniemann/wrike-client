@@ -4,6 +4,7 @@ import getTasksInfo, { type Task } from './getTaskInfo';
 import getUserInfo, { type User } from './getUserInfo';
 import transformOldIds from './transformOldIds';
 import getCommentsFromTask, { type Comment } from './getCommentsFromTask';
+import createCommentOnTask from './createCommentOnTask';
 
 export default class WrikeAPI {
   instance: Axios;
@@ -28,6 +29,13 @@ export default class WrikeAPI {
       return getCommentsFromTask(this.instance, task);
     }
     return getCommentsFromTask(this.instance, task.id);
+  }
+
+  createCommentOnTask(task: string | Task, content: string): Promise<Comment> {
+    if (typeof task === 'string') {
+      return createCommentOnTask(this.instance, task, content);
+    }
+    return createCommentOnTask(this.instance, task.id, content);
   }
 
   getUserInfo(id: string): Promise<?User> {
