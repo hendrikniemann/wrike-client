@@ -2,9 +2,12 @@
 import axios, { type Axios } from 'axios';
 import getTasksInfo, { type Task } from './getTasksInfo';
 import getUserInfo, { type User } from './getUserInfo';
+import getContactsInfo from './getContactsInfo';
 import transformOldIds from './transformOldIds';
 import getCommentsFromTask, { type Comment } from './getCommentsFromTask';
 import createCommentOnTask from './createCommentOnTask';
+
+export type { User, Task, Comment };
 
 export default class WrikeAPI {
   instance: Axios;
@@ -14,6 +17,14 @@ export default class WrikeAPI {
       baseURL: 'https://www.wrike.com/api/v3/',
       headers: { authorization: `bearer ${token}` },
     });
+  }
+
+  getContactInfo(id: string): Promise<?User> {
+    return getContactsInfo(this.instance, [id]).then(res => res[0]);
+  }
+
+  getContactsInfo(ids: string[]): Promise<Array<?User>> {
+    return getContactsInfo(this.instance, ids);
   }
 
   getTaskInfo(id: string): Promise<?Task> {
