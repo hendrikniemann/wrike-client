@@ -1,6 +1,6 @@
 /* @flow */
 import axios, { type Axios } from 'axios';
-import getTasksInfo, { type Task } from './getTaskInfo';
+import getTasksInfo, { type Task } from './getTasksInfo';
 import getUserInfo, { type User } from './getUserInfo';
 import transformOldIds from './transformOldIds';
 import getCommentsFromTask, { type Comment } from './getCommentsFromTask';
